@@ -4,6 +4,12 @@ const submitBtn = document.getElementById("submit-button")
 const warningText = document.getElementById("warning")
 const nameUlEl = document.getElementById("name-li")
 const daysUlEl = document.getElementById("days-li")
+const myItems = []
+
+const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItems"));
+if(itemsFromLocalStorage){
+    render(itemsFromLocalStorage)
+}
 
 submitBtn.addEventListener("click", ()=> {
     const name = nameInput.value
@@ -13,10 +19,12 @@ submitBtn.addEventListener("click", ()=> {
         const duration = calculateDuration(date)
         warningText.style.display = "none"
 
-        nameUlEl.innerHTML += `<li>${name}</li>`
-        daysUlEl.innerHTML += `<li>${duration}_Days</li>`
-        console.log("Entry logged: ", name, duration)
+        // Saving new entry into local storage and rendering it
+        myItems.push({"name":name,"duration":duration})
+        localStorage.setItem("myItems", JSON.stringify(myItems))
+        render(myItems)
 
+        // Emptying the input values
         nameInput.value = ""
         dateInput.value = ""
     } else {
@@ -30,6 +38,17 @@ function calculateDuration(date){
     // Milliseconds per day
     const oneDay = 24 * 60 * 60 * 1000
     // Getting the millisecond count since Jan 1, 1970 from each date -> subtract -> divide to get day count
-    const duration = Math.round((today.getTime() - oldDate.getTime())/oneDay)
+    const duration = Math.round((today.getTime() - oldDate.getTime())/oneDay) - 1
     return duration
+}
+
+function render(myItems){
+    let nameList = ""
+    let durationList = ""
+    for(let i=0; i<myItems.length; i++){
+        nameList += `<li>${myItems[i].name}</li>`
+        durationList += `<li>${myItems[i].duration}_Days</li>`
+    }
+    nameUlEl.innerHTML += nameList
+    daysUlEl.innerHTML += durationList
 }
