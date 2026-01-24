@@ -8,7 +8,8 @@ const myItems = []
 
 const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItems"));
 if(itemsFromLocalStorage){
-    render(itemsFromLocalStorage)
+    myItems = leadsFromLocalStorage
+    render(myItems)
 }
 
 submitBtn.addEventListener("click", ()=> {
