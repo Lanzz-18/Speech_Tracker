@@ -1,0 +1,66 @@
+* {
+    font-family: "Orbitron";
+}
+
+body {
+    background-color: black;
+    color: rgb(59, 230, 47);
+}
+
+.table {
+    border: 2px solid rgb(59, 230, 47);
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.col {
+    border: 2px solid rgb(59, 230, 47);
+    padding: 5px;
+    min-width: 300px;
+}
+
+.col-header {
+    border-bottom: 2px solid rgb(59, 230, 47);
+}
+
+.ul-container {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.input-section > input {
+    color: rgb(59, 230, 47);
+    background-color: black;
+    outline: 0;
+    border: 2px solid rgb(59, 230, 47);
+    border-radius: 2px;
+}
+
+.input-section > input::placeholder {
+    color: rgb(59, 230, 47);
+    opacity: 0.5;
+}
+
+#date-input::-webkit-calendar-picker-indicator {
+    filter: invert(74%) sepia(58%) saturate(3000%) hue-rotate(60deg);
+    cursor: pointer;
+}
+
+.input-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+/*
+<div class="input-section">
+    <input type="search" placeholder="Add name" id="name-input">
+    <input type="date" id="date-input">
+</div>
+
+*/
