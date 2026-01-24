@@ -16,11 +16,10 @@ submitBtn.addEventListener("click", ()=> {
     const date = dateInput.value
 
     if(name && date){
-        const duration = calculateDuration(date)
         warningText.style.display = "none"
 
         // Saving new entry into local storage and rendering it
-        myItems.push({"name":name,"duration":duration})
+        myItems.push({"name":name,"date":date})
         localStorage.setItem("myItems", JSON.stringify(myItems))
         render(myItems)
 
@@ -45,9 +44,11 @@ function calculateDuration(date){
 function render(myItems){
     let nameList = ""
     let durationList = ""
+    let duration = 0
     for(let i=0; i<myItems.length; i++){
+        duration = calculateDuration(myItems[i].date)
         nameList += `<li>${myItems[i].name}</li>`
-        durationList += `<li>${myItems[i].duration}_Days</li>`
+        durationList += `<li>${duration}_Day(s)</li>`
     }
     nameUlEl.innerHTML += nameList
     daysUlEl.innerHTML += durationList
