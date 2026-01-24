@@ -7,20 +7,20 @@ const daysUlEl = document.getElementById("days-li")
 const myItems = []
 
 const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItems"));
-if(itemsFromLocalStorage){
-    myItems = leadsFromLocalStorage
+if (itemsFromLocalStorage) {
+    myItems = itemsFromLocalStorage
     render(myItems)
 }
 
-submitBtn.addEventListener("click", ()=> {
+submitBtn.addEventListener("click", () => {
     const name = nameInput.value
     const date = dateInput.value
 
-    if(name && date){
+    if (name && date) {
         warningText.style.display = "none"
 
         // Saving new entry into local storage and rendering it
-        myItems.push({"name":name,"date":date})
+        myItems.push({ "name": name, "date": date })
         localStorage.setItem("myItems", JSON.stringify(myItems))
         render(myItems)
 
@@ -32,21 +32,21 @@ submitBtn.addEventListener("click", ()=> {
     }
 })
 
-function calculateDuration(date){
+function calculateDuration(date) {
     const today = new Date()
     const oldDate = new Date(date)
     // Milliseconds per day
     const oneDay = 24 * 60 * 60 * 1000
     // Getting the millisecond count since Jan 1, 1970 from each date -> subtract -> divide to get day count
-    const duration = Math.round((today.getTime() - oldDate.getTime())/oneDay) - 1
+    const duration = Math.round((today.getTime() - oldDate.getTime()) / oneDay) - 1
     return duration
 }
 
-function render(myItems){
+function render(myItems) {
     let nameList = ""
     let durationList = ""
     let duration = 0
-    for(let i=0; i<myItems.length; i++){
+    for (let i = 0; i < myItems.length; i++) {
         duration = calculateDuration(myItems[i].date)
         nameList += `<li>${myItems[i].name}</li>`
         durationList += `<li>${duration}_Day(s)</li>`
