@@ -4,7 +4,7 @@ const submitBtn = document.getElementById("submit-button")
 const warningText = document.getElementById("warning")
 const nameUlEl = document.getElementById("name-li")
 const daysUlEl = document.getElementById("days-li")
-const myItems = []
+let myItems = []
 
 const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItems"));
 if (itemsFromLocalStorage) {
@@ -46,6 +46,11 @@ function render(myItems) {
     let nameList = ""
     let durationList = ""
     let duration = 0
+
+    // Clearing out the html
+    nameUlEl.innerHTML = ""
+    daysUlEl.innerHTML = ""
+    
     for (let i = 0; i < myItems.length; i++) {
         duration = calculateDuration(myItems[i].date)
         nameList += `<li>${myItems[i].name}</li>`
