@@ -38,7 +38,7 @@ function calculateDuration(date) {
     // Milliseconds per day
     const oneDay = 24 * 60 * 60 * 1000
     // Getting the millisecond count since Jan 1, 1970 from each date -> subtract -> divide to get day count
-    const duration = Math.round((today.getTime() - oldDate.getTime()) / oneDay) - 1
+    const duration = Math.round((today.getTime() - oldDate.getTime()) / oneDay) 
     return duration
 }
 
